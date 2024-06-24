@@ -21,9 +21,9 @@ const Navbar=()=>{
                   Danh sách iphone
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown1">
-                  <li><a className="dropdown-item" href="#">Thể loại 1</a></li>
-                  <li><a className="dropdown-item" href="#">Thể loại 2</a></li>
-                  <li><a className="dropdown-item" href="#">Thể loại 3</a></li>
+                  <li><a className="dropdown-item" href="#">Iphone 13 </a></li>
+                  <li><a className="dropdown-item" href="#">Iphone 14 </a></li>
+                  <li><a className="dropdown-item" href="#">Iphone 15 </a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -64,6 +64,7 @@ const Navbar=()=>{
               <FontAwesomeIcon icon={faUser} />
               </a>
             </li>
+            
           </ul>
         </div>
       </nav>
