@@ -1,8 +1,10 @@
 import React from "react";
 
-import ListPhone from "../product/ListPhone";
+
 import Banner from "./component/Banner";
 import Carousel from "./component/Carousel";
+import ListPhone from "../product/ListPhone";
+
 
 function HomePage(){
     return(

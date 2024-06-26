@@ -1,64 +1,45 @@
-import React from "react";
-import Phone from "../../model/Phone";
+import React, { useEffect, useState } from "react";
+import { getAllPhones } from "../../api/PhoneAPI";
+import PhoneModel from "../../model/PhoneModel";
 import PhoneProps from "./component/PhoneProps";
 
 const ListPhone:React.FC=()=>{
-    const phones:Phone[]=[
-        {   
-            id: 1,
-            title: 'Iphone 13 Promax',
-            description: 'Description for Iphone 13 Promax',
-            originalPrice: 50000,
-            price: 45000,
-            imageUrl: '../../images/iphone-13-pro-max-blue.png',
-        },
-        {   
-            id: 2,
-            title: 'Iphone 14 Promax',
-            description: 'Description for Iphone 14 Promax',
-            originalPrice: 50000,
-            price: 45000,
-            imageUrl: '../../images/iphone-14-pro-max-purple-1.png',
-        },
-        {   
-            id: 3,
-            title: 'Iphone 15 Promax',
-            description: 'Description for Iphone 15 Promax',
-            originalPrice: 50000,
-            price: 45000,
-            imageUrl: '../../images/iphone-15-pro-max-blue-titanium.png',
-        },
-        {   
-            id: 3,
-            title: 'Iphone 15 Promax',
-            description: 'Description for Iphone 15 Promax',
-            originalPrice: 50000,
-            price: 45000,
-            imageUrl: '../../images/iphone-15-pro-max-blue-titanium.png',
-        },
-        {   
-            id: 3,
-            title: 'Iphone 15 Promax',
-            description: 'Description for Iphone 15 Promax',
-            originalPrice: 50000,
-            price: 45000,
-            imageUrl: '../../images/iphone-15-pro-max-blue-titanium.png',
-        },
-        {   
-            id: 3,
-            title: 'Iphone 15 Promax',
-            description: 'Description for Iphone 15 Promax',
-            originalPrice: 50000,
-            price: 45000,
-            imageUrl: '../../images/iphone-15-pro-max-blue-titanium.png',
-        }
-
-    ];
+    const [phoneProducts,setPhoneProducts]=useState<PhoneModel[]>([]);
+    const [loading,setLoading]=useState(true);
+    const [error,setError]=useState(null);
+    useEffect(() => {
+        getAllPhones().then(
+            phoneData =>{
+                setPhoneProducts(phoneData);
+                setLoading(false);
+            }
+        ).catch(
+            error => {
+                setLoading(false);
+                setError(error.message);
+            }
+        );
+    }, [] // Chi goi mot lan
+    )
+    if(loading){
+        return(
+            <div>
+                <h1>Đang tải dữ liệu</h1>
+            </div>
+        );
+    }
+    if(error){
+        return(
+            <div>
+                <h1>Gặp lỗi{error}</h1>
+            </div>
+        );
+    }
     return(
         <div className="container">
             <div className="row mt-4">
-                {phones.map((phone)=>(
-                    <PhoneProps phone={phone}/>
+                {phoneProducts.map((phone)=>(
+                    <PhoneProps key={phone.maDienThoai} phone={phone}/>
                 ))}
             </div>
         </div>
